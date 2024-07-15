@@ -1,0 +1,1 @@
+ /Users/omarmushtaha2525gmail.com/Desktop/record_audio_chat_app/.dart_tool/flutter_build/47aac2f5e8f7cccfa8714c19cfae153a/native_assets.yaml: 
