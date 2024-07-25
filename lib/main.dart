@@ -6,7 +6,6 @@ import 'package:record_audio_chat_app/bloc_app/user_bloc/bloc.dart';
 import 'package:record_audio_chat_app/bloc_app/user_bloc/event.dart';
 import 'package:record_audio_chat_app/shared/app_route/app_route.dart';
 
-import 'package:record_audio_chat_app/shared/app_cubit/user_cubit/user_screen_cubit.dart';
 import 'package:record_audio_chat_app/shared/bloc_observer/bloc_observer.dart';
 import 'package:record_audio_chat_app/shared/components/constant/constant.dart';
 import 'firebase_options.dart';

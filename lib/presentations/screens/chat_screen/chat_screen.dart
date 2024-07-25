@@ -9,8 +9,7 @@ import 'package:record_audio_chat_app/bloc_app/chat_bloc/bloc.dart';
 import 'package:record_audio_chat_app/bloc_app/chat_bloc/event.dart';
 import 'package:record_audio_chat_app/bloc_app/chat_bloc/state.dart';
 
-import 'package:record_audio_chat_app/shared/app_cubit/chat_cubit/chat_screen_cubit.dart';
-import 'package:record_audio_chat_app/shared/app_cubit/chat_cubit/chat_screen_states.dart';
+
 import 'package:record_audio_chat_app/shared/components/constant/constant.dart';
 
 class ChatScreen extends StatefulWidget {

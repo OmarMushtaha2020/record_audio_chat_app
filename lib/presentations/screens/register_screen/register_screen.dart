@@ -8,8 +8,7 @@ import 'package:record_audio_chat_app/presentations/common_widget/common_contain
 import 'package:record_audio_chat_app/presentations/common_widget/common_size_box_widget.dart';
 import 'package:record_audio_chat_app/presentations/common_widget/common_text_form_field_widget.dart';
 import 'package:record_audio_chat_app/presentations/common_widget/common_text_widget.dart';
-import 'package:record_audio_chat_app/shared/app_cubit/register_cubit/register_screen_cubit.dart';
-import 'package:record_audio_chat_app/shared/app_cubit/register_cubit/register_screen_states.dart';
+
 
 import 'package:record_audio_chat_app/shared/components/constant/constant.dart';
 
