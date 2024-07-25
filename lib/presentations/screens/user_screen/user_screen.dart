@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:record_audio_chat_app/modules/chat_screen/chat_screen.dart';
+import 'package:record_audio_chat_app/bloc_app/user_bloc/bloc.dart';
+import 'package:record_audio_chat_app/bloc_app/user_bloc/state.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_size_box_widget.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_text_widget.dart';
 import 'package:record_audio_chat_app/shared/app_cubit/user_cubit/user_screen_cubit.dart';
 import 'package:record_audio_chat_app/shared/app_cubit/user_cubit/user_screen_states.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_size_box_widget.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_text_widget.dart';
+
 import 'package:record_audio_chat_app/shared/components/constant/constant.dart';
 
 class UserScreen extends StatelessWidget {
   const UserScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    UserScreenCubit cubit=UserScreenCubit.get(context);
+    var bloc =UserBloc.get(context);
 
-    return BlocConsumer<UserScreenCubit, UserScreenStates>(
+    return BlocConsumer<UserBloc, UserState>(
       listener: (context, state) {
         // TODO: implement listener
       },
@@ -39,8 +41,8 @@ class UserScreen extends StatelessWidget {
                 itemBuilder: (context, index) =>
                     InkWell(
                       onTap: (){
-                        uidOfUser=cubit.users[index].userUid!;
-                        navigatorToScreen(context,'/chat_screen',value:  cubit.users[index].userUid!);
+                        uidOfUser=bloc.users[index].userUid!;
+                        navigatorToScreen(context,'/chat_screen',value:  bloc.users[index].userUid!);
                       },
                       child: Row(
                         children: [
@@ -53,7 +55,7 @@ class UserScreen extends StatelessWidget {
                             width: 20.h,
                           ),
                           CommonTextWidget(
-                            title: '${cubit.users[index].name}',
+                            title: '${bloc.users[index].name}',
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w800,
                             color: Colors.black,
@@ -62,7 +64,7 @@ class UserScreen extends StatelessWidget {
                       ),
                     ),
                 separatorBuilder: (context, index) => const Divider(),
-                itemCount:cubit.users.length),
+                itemCount:bloc.users.length),
           ),
         );
       },

@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:record_audio_chat_app/modules/chat_screen/chat_screen.dart';
-import 'package:record_audio_chat_app/modules/login_screen/login_screen.dart';
-import 'package:record_audio_chat_app/modules/register_screen/register_screen.dart';
-import 'package:record_audio_chat_app/modules/user_screen/user_screen.dart';
+
 import 'package:record_audio_chat_app/shared/components/constant/constant.dart';
+
+import '../../presentations/screens/chat_screen/chat_screen.dart';
+import '../../presentations/screens/login_screen/login_screen.dart';
+import '../../presentations/screens/register_screen/register_screen.dart';
+import '../../presentations/screens/user_screen/user_screen.dart';
 
 class AppRoute{
   Route?generateRoute(RouteSettings settings){

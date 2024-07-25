@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:record_audio_chat_app/bloc_app/register_bloc/bloc.dart';
+import 'package:record_audio_chat_app/bloc_app/register_bloc/event.dart';
+import 'package:record_audio_chat_app/bloc_app/register_bloc/state.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_container_widget.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_size_box_widget.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_text_form_field_widget.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_text_widget.dart';
 import 'package:record_audio_chat_app/shared/app_cubit/register_cubit/register_screen_cubit.dart';
 import 'package:record_audio_chat_app/shared/app_cubit/register_cubit/register_screen_states.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_container_widget.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_size_box_widget.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_text_form_field_widget.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_text_widget.dart';
+
 import 'package:record_audio_chat_app/shared/components/constant/constant.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -17,14 +21,14 @@ class RegisterScreen extends StatelessWidget {
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     return BlocProvider(
-      create: (context) => RegisterScreenCubit(),
-      child: BlocConsumer<RegisterScreenCubit, RegisterScreenStates>(
+      create: (context) => RegisterBloc(),
+      child: BlocConsumer<RegisterBloc, RegisterState>(
         listener: (context, state) {
           // Handle state changes if needed
         },
         builder: (context, state) {
           // Now it's safe to get the cubit instance
-          var cubit = RegisterScreenCubit.get(context);
+          var bloc = RegisterBloc.get(context);
 
           return Scaffold(
             appBar: AppBar(),
@@ -63,7 +67,7 @@ class RegisterScreen extends StatelessWidget {
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
-                            controller: cubit.userName,
+                            controller: bloc.userName,
                             keyboardType: TextInputType.name,
                           ),
                           CommonSizeBoxWidget(
@@ -75,7 +79,7 @@ class RegisterScreen extends StatelessWidget {
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
-                            controller: cubit.emailController,
+                            controller: bloc.emailController,
                             keyboardType: TextInputType.emailAddress,
                           ),
                           CommonSizeBoxWidget(
@@ -87,7 +91,7 @@ class RegisterScreen extends StatelessWidget {
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
-                            controller: cubit.passwordController,
+                            controller: bloc.passwordController,
                             keyboardType: TextInputType.visiblePassword,
                           ),
                           CommonSizeBoxWidget(
@@ -99,7 +103,7 @@ class RegisterScreen extends StatelessWidget {
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
-                            controller: cubit.phoneNumber,
+                            controller: bloc.phoneNumber,
                             keyboardType: TextInputType.phone,
                           ),
                           CommonSizeBoxWidget(
@@ -109,13 +113,11 @@ class RegisterScreen extends StatelessWidget {
                               height: 50.h,
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
-                                  cubit.createUserAccount(
-                                    cubit.userName.text.toString().trim(),
-                                    cubit.emailController.text.toString().trim(),
-                                    cubit.phoneNumber.text.toString().trim(),
+                                  bloc.add(CrateAccountEvent(bloc.userName.text.toString().trim(),
+                                    bloc.emailController.text.toString().trim(),
+                                    bloc.phoneNumber.text.toString().trim(),
                                     context,
-                                    cubit.passwordController.text.toString().trim(),
-                                  );
+                                    bloc.passwordController.text.toString().trim(),));
                                 }
                               },
                               width: double.infinity,

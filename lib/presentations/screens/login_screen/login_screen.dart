@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:record_audio_chat_app/modules/register_screen/register_screen.dart';
-import 'package:record_audio_chat_app/shared/app_cubit/login_cubit/login_screen_cubit.dart';
+import 'package:record_audio_chat_app/bloc_app/login_bloc/bloc.dart';
+import 'package:record_audio_chat_app/bloc_app/login_bloc/event.dart';
+import 'package:record_audio_chat_app/bloc_app/login_bloc/state.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_container_widget.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_size_box_widget.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_text_form_field_widget.dart';
+import 'package:record_audio_chat_app/presentations/common_widget/common_text_widget.dart';
 import 'package:record_audio_chat_app/shared/app_cubit/login_cubit/login_screen_states.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_container_widget.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_size_box_widget.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_text_form_field_widget.dart';
-import 'package:record_audio_chat_app/shared/components/common_widget/common_text_widget.dart';
+
 import 'package:record_audio_chat_app/shared/components/constant/constant.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -19,14 +21,16 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginScreenCubit(),
-      child: BlocConsumer<LoginScreenCubit, LoginScreenStates>(
+      create: (context) => LoginBloc(),
+      child: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
           // Handle state changes if necessary
         },
-        builder: (context, state) {
+        builder: (context, state)
+        {
+          if(state is LoginLoad){}
           // Move cubit access inside builder
-          var cubit = LoginScreenCubit.get(context);
+          var bloc = LoginBloc.get(context);
 
           return Scaffold(
             appBar: AppBar(),
@@ -70,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
-                            controller: cubit.emailController,
+                            controller: bloc.emailController,
                             keyboardType: TextInputType.emailAddress,
                           ),
                           // Vertical Spacer
@@ -84,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
-                            controller: cubit.passwordController,
+                            controller: bloc.passwordController,
                             keyboardType: TextInputType.visiblePassword,
                           ),
                           // Vertical Spacer
@@ -92,17 +96,12 @@ class LoginScreen extends StatelessWidget {
                             height: 20.h,
                           ),
                           // Login Button or Loading Indicator
-                          state is LoginLoad
-                              ? Center(child: CircularProgressIndicator())
-                              : CommonContainerWidget(
+                          state is LoginLoad  ? Center(child: CircularProgressIndicator()) : CommonContainerWidget(
                             height: 50.h,
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
-                                cubit.signIn(
-                                  cubit.emailController.text.trim(),
-                                  cubit.passwordController.text.trim(),
-                                  context,
-                                );
+                                LoginBloc.get(context).add(SignInEvent( bloc.emailController.text.trim(), bloc.passwordController.text.trim(), context));
+
                               }
                             },
                             width: double.infinity,

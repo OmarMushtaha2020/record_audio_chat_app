@@ -2,14 +2,12 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:record_audio_chat_app/app_route.dart';
-import 'package:record_audio_chat_app/modules/chat_screen/chat_screen.dart';
-import 'package:record_audio_chat_app/modules/login_screen/login_screen.dart';
-import 'package:record_audio_chat_app/modules/register_screen/register_screen.dart';
-import 'package:record_audio_chat_app/modules/user_screen/user_screen.dart';
-import 'package:record_audio_chat_app/shared/app_cubit/login_cubit/login_screen_cubit.dart';
-import 'package:record_audio_chat_app/shared/app_cubit/register_cubit/register_screen_cubit.dart';
+import 'package:record_audio_chat_app/bloc_app/user_bloc/bloc.dart';
+import 'package:record_audio_chat_app/bloc_app/user_bloc/event.dart';
+import 'package:record_audio_chat_app/shared/app_route/app_route.dart';
+
 import 'package:record_audio_chat_app/shared/app_cubit/user_cubit/user_screen_cubit.dart';
+import 'package:record_audio_chat_app/shared/bloc_observer/bloc_observer.dart';
 import 'package:record_audio_chat_app/shared/components/constant/constant.dart';
 import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +16,8 @@ import 'shared/network/local/cacth_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = BlocObserverToApp();
+
   await Cacth_Helper.inti();
 token=Cacth_Helper.getToken("token")??"";
 print("the token is$token");
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => UserScreenCubit()..getAllUser()..getUserData()),
+            BlocProvider(create: (context) => UserBloc()..add(GetUserData())..add(GetAllUser())),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

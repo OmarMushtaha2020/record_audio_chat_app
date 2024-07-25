@@ -4,8 +4,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:record_audio_chat_app/model/record_model.dart';
-import 'package:record_audio_chat_app/model/user_model.dart';
+import 'package:record_audio_chat_app/data/model/record_model.dart';
+import 'package:record_audio_chat_app/data/model/user_model.dart';
 
 final windowSize = ui.window.physicalSize;
 final screenScale = ui.window.devicePixelRatio;

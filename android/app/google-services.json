@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "605279807288",
-    "project_id": "recordapp-aaf3c",
-    "storage_bucket": "recordapp-aaf3c.appspot.com"
+    "project_number": "145653103712",
+    "project_id": "recordapps-e659b",
+    "storage_bucket": "recordapps-e659b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:605279807288:android:1df3a59ddcc2f7d6c543cd",
+        "mobilesdk_app_id": "1:145653103712:android:ca0e88fb95b26652839705",
         "android_client_info": {
           "package_name": "com.example.record_audio_chat_app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAkQow3vTyq3Dh3CU7tXOV92PdOe8INsPE"
+          "current_key": "AIzaSyBQDkgVrNofF1ilMnGm4ZZa49wctawwi3E"
         }
       ],
       "services": {

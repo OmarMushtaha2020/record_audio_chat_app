@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:record_audio_chat_app/modules/user_screen/user_screen.dart';
+import 'package:record_audio_chat_app/bloc_app/chat_bloc/bloc.dart';
+import 'package:record_audio_chat_app/bloc_app/chat_bloc/event.dart';
+import 'package:record_audio_chat_app/bloc_app/chat_bloc/state.dart';
 
 import 'package:record_audio_chat_app/shared/app_cubit/chat_cubit/chat_screen_cubit.dart';
 import 'package:record_audio_chat_app/shared/app_cubit/chat_cubit/chat_screen_states.dart';
@@ -62,19 +64,20 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {return BlocProvider(
 
-      create: (context) => ChatScreenCubit(),
+      create: (context) => ChatBloc(),
       child: Builder(builder: (context) {
          uidOfUser=ModalRoute.of(context)?.settings.arguments.toString() ;
 print("uidOfUser :$uidOfUser");
-        userModel?.userUid==uidOfUser? ChatScreenCubit.get(context).getMessagesOfSender(receiverId: uidOfUser!):ChatScreenCubit.get(context).getMessagesOfReceiver(receiverId: uidOfUser??"");
+         userModel?.userUid==uidOfUser?     ChatBloc.get(context).add(GetMessagesVoiceOfSender( uidOfUser!)):
+         ChatBloc.get(context).add(GetMessagesVoiceOfReceived( uidOfUser!));
 
-        return BlocConsumer<ChatScreenCubit, ChatScreenStates>(
+        return BlocConsumer<ChatBloc, ChatState>(
 
           listener: (context, state) {
             // TODO: implement listener
           },
           builder: (context, state) {
-            var cubit = ChatScreenCubit.get(context);
+            var bloc = ChatBloc.get(context);
 
             return Scaffold(
               appBar: AppBar(
@@ -112,16 +115,16 @@ print("uidOfUser :$uidOfUser");
 
                       onSeekChanged: (double value) {},
                       onPlayPauseButtonClick: () {
-                        cubit.changeValueOfIndex(index);
+                        ChatBloc.get(context).add(ChangeValueIndex(index));
 if(is_player==false){
-
-  cubit.playVoiceRecord(voice[index].urlVoice);
+  ChatBloc.get(context).add(PlayVoiceRecord(voice[index].urlVoice));
   setState(() {
     is_player=true;
   });
 }else{
   print("omar");
-      cubit.stopVoiceRecord();
+  ChatBloc.get(context).add(StopVoiceRecord());
+
       setState(() {
         is_player=false;
 
@@ -139,17 +142,21 @@ if(is_player==false){
                   itemCount: voice.length),
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                  if (cubit.is_record == false) {
-                    cubit.startRecord();
+                  print(bloc.is_record);
+                  if (bloc.is_record == false) {
+                    ChatBloc.get(context).add(StartRecord());
+
                   } else {
                     var now = DateTime.now();
                     String formattedDate =
                         DateFormat.MMMEd().add_jm().format(now);
-                    cubit.stopRecord(userModel?.userUid, uidOfUser,
-                        formattedDate.toString());
+                    ChatBloc.get(context).add(StopRecord(userModel?.userUid, uidOfUser,
+                        formattedDate.toString()));
+
+                   
                   }
                 },
-                child: cubit.is_record
+                child: bloc.is_record
                     ? const Icon(Icons.stop)
                     : const Icon(Icons.mic),
               ),

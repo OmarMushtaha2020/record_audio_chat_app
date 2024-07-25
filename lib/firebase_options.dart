@@ -41,48 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDHZf9nq74r1KBlyR9YofeyIhqX-U3teRY',
-    appId: '1:605279807288:web:48c63569b7911284c543cd',
-    messagingSenderId: '605279807288',
-    projectId: 'recordapp-aaf3c',
-    authDomain: 'recordapp-aaf3c.firebaseapp.com',
-    storageBucket: 'recordapp-aaf3c.appspot.com',
-    measurementId: 'G-WK7VNTSDNH',
+    apiKey: 'AIzaSyCC70eVuy8ggTbtOSoFy7p5aRWFZ8hFmgU',
+    appId: '1:145653103712:web:fe7b17bfde51a063839705',
+    messagingSenderId: '145653103712',
+    projectId: 'recordapps-e659b',
+    authDomain: 'recordapps-e659b.firebaseapp.com',
+    storageBucket: 'recordapps-e659b.appspot.com',
+    measurementId: 'G-2FG0SMFBPC',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAkQow3vTyq3Dh3CU7tXOV92PdOe8INsPE',
-    appId: '1:605279807288:android:1df3a59ddcc2f7d6c543cd',
-    messagingSenderId: '605279807288',
-    projectId: 'recordapp-aaf3c',
-    storageBucket: 'recordapp-aaf3c.appspot.com',
+    apiKey: 'AIzaSyBQDkgVrNofF1ilMnGm4ZZa49wctawwi3E',
+    appId: '1:145653103712:android:ca0e88fb95b26652839705',
+    messagingSenderId: '145653103712',
+    projectId: 'recordapps-e659b',
+    storageBucket: 'recordapps-e659b.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDn5J9PpCgfuk4_vNKAb0HVcTm7mNdQv1o',
-    appId: '1:605279807288:ios:40256e897c3c90fbc543cd',
-    messagingSenderId: '605279807288',
-    projectId: 'recordapp-aaf3c',
-    storageBucket: 'recordapp-aaf3c.appspot.com',
+    apiKey: 'AIzaSyBpIfgG_yXYg3DxD7LvH6VJzeacGoTFBl0',
+    appId: '1:145653103712:ios:8f9254b6baae23b9839705',
+    messagingSenderId: '145653103712',
+    projectId: 'recordapps-e659b',
+    storageBucket: 'recordapps-e659b.appspot.com',
     iosBundleId: 'com.example.recordAudioChatApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDn5J9PpCgfuk4_vNKAb0HVcTm7mNdQv1o',
-    appId: '1:605279807288:ios:40256e897c3c90fbc543cd',
-    messagingSenderId: '605279807288',
-    projectId: 'recordapp-aaf3c',
-    storageBucket: 'recordapp-aaf3c.appspot.com',
+    apiKey: 'AIzaSyBpIfgG_yXYg3DxD7LvH6VJzeacGoTFBl0',
+    appId: '1:145653103712:ios:8f9254b6baae23b9839705',
+    messagingSenderId: '145653103712',
+    projectId: 'recordapps-e659b',
+    storageBucket: 'recordapps-e659b.appspot.com',
     iosBundleId: 'com.example.recordAudioChatApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDHZf9nq74r1KBlyR9YofeyIhqX-U3teRY',
-    appId: '1:605279807288:web:3ac09a2ace3d6d45c543cd',
-    messagingSenderId: '605279807288',
-    projectId: 'recordapp-aaf3c',
-    authDomain: 'recordapp-aaf3c.firebaseapp.com',
-    storageBucket: 'recordapp-aaf3c.appspot.com',
-    measurementId: 'G-TJ0VDMZPEY',
+    apiKey: 'AIzaSyCC70eVuy8ggTbtOSoFy7p5aRWFZ8hFmgU',
+    appId: '1:145653103712:web:1a1d4d845e505015839705',
+    messagingSenderId: '145653103712',
+    projectId: 'recordapps-e659b',
+    authDomain: 'recordapps-e659b.firebaseapp.com',
+    storageBucket: 'recordapps-e659b.appspot.com',
+    measurementId: 'G-GD0BQVX6N0',
   );
 }
